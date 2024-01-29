@@ -1,6 +1,7 @@
 def solutions():
     return 0
 
+
 """
 문제 1 : 숫자의 합 구하기
 N개의 숫자가 공백 없이 써 있다. 이 숫자를 모두 합해 출력하는 프로그램을 작성하시오.
@@ -11,13 +12,14 @@ num2 : 공백 없이 주어진 num1개의 숫자
 ==========================
 """
 def solution1():
-    a=int(input("num1 : "))
-    b=int(input("num2 : "))
-    answer=0
-    for i in range(0,a):
-        answer+=b%10
-        b=(b-b%10)/10
+    a = int(input("num1 : "))
+    b = int(input("num2 : "))
+    answer = 0
+    for i in range(0, a):
+        answer += b % 10
+        b = (b - b % 10) / 10
     print(int(answer))
+
 
 """
 문제 2 : 평균 구하기
@@ -30,10 +32,11 @@ numbers : 각 과목의 시험 성적 list
 ==========================
 """
 def solution2():
-    values=list(map(int,input("점수들을 입력 : ").split()))
-    maxValue=max(values)
-    temp=sum(values)
-    print(temp/maxValue*100/len(values))
+    values = list(map(int, input("점수들을 입력 : ").split()))
+    maxValue = max(values)
+    temp = sum(values)
+    print(temp / maxValue * 100 / len(values))
+
 
 """
 문제 3 : 구간 합 구하기 1
@@ -52,19 +55,19 @@ def solution2():
 ===========================
 """
 def solution3():
-    given=list(map(int,input("데이터의 개수 & 질의 개수 : ").split()))
-    numbers=list(map(int, input("numbers : ").split()))
-    partialSum=[0]
-    answer=[]
-    temp=0
+    given = list(map(int, input("데이터의 개수 & 질의 개수 : ").split()))
+    numbers = list(map(int, input("numbers : ").split()))
+    partialSum = [0]
+    answer = []
+    temp = 0
     # 구간 합
     for i in range(given[0]):
-        temp+=numbers[i]
+        temp += numbers[i]
         partialSum.append(temp)
 
     for i in range(given[1]):
-        question=list(map(int,input("질의 : ").split()))
-        answer.append(partialSum[question[1]]-partialSum[question[0]-1])
+        question = list(map(int, input("질의 : ").split()))
+        answer.append(partialSum[question[1]] - partialSum[question[0] - 1])
 
     print(answer)
 
@@ -93,35 +96,35 @@ N x N개의 수가 N x N 크기의 표에 채워져 있다. 표 안의 수 중 (
 ===========================
 """
 def solution4():
-    given=list(map(int,input("2차원 배열 크기 & 구간 합 질의 개수 : ").split()))
-    matrix=[]
-    answer=[]
+    given = list(map(int, input("2차원 배열 크기 & 구간 합 질의 개수 : ").split()))
+    matrix = []
+    answer = []
 
     for i in range(given[0]):
-        matrix.append(list(map(int,input("row : ").split())))
+        matrix.append(list(map(int, input("row : ").split())))
 
-    sum_matrix=matrix
+    sum_matrix = matrix
     for i in range(given[0]):
         for j in range(given[0]):
-            if(i==0 and j==0):
+            if (i == 0 and j == 0):
                 continue
-            elif(i==0):
-                sum_matrix[i][j] = sum_matrix[i][j-1]+matrix[i][j]
-            elif(j==0):
-                sum_matrix[i][j] = sum_matrix[i-1][j] + matrix[i][j]
+            elif (i == 0):
+                sum_matrix[i][j] = sum_matrix[i][j - 1] + matrix[i][j]
+            elif (j == 0):
+                sum_matrix[i][j] = sum_matrix[i - 1][j] + matrix[i][j]
             else:
-                sum_matrix[i][j] = sum_matrix[i - 1][j] + sum_matrix[i][j-1] - sum_matrix[i-1][j-1] + matrix[i][j]
+                sum_matrix[i][j] = sum_matrix[i - 1][j] + sum_matrix[i][j - 1] - sum_matrix[i - 1][j - 1] + matrix[i][j]
     print(sum_matrix)
     for i in range(given[1]):
-        cordinate=list(map(int, input("좌표 : ").split()))
-        if(cordinate[0]==1 and cordinate[1]==1):
-            answer.append(sum_matrix[cordinate[2]-1][cordinate[3]-1])
-        elif(cordinate[0]==1):
+        cordinate = list(map(int, input("좌표 : ").split()))
+        if (cordinate[0] == 1 and cordinate[1] == 1):
+            answer.append(sum_matrix[cordinate[2] - 1][cordinate[3] - 1])
+        elif (cordinate[0] == 1):
             answer.append(
                 sum_matrix[cordinate[2] - 1][cordinate[3] - 1]
                 - sum_matrix[cordinate[2] - 1][cordinate[1] - 2]
             )
-        elif(cordinate[1]==1):
+        elif (cordinate[1] == 1):
             answer.append(
                 sum_matrix[cordinate[2] - 1][cordinate[3] - 1]
                 - sum_matrix[cordinate[0] - 2][cordinate[3] - 1]
@@ -136,6 +139,7 @@ def solution4():
     # 이거 1행 1열에 0 깔아놓으면 if문 쓸 필요 없음;;
     print(answer)
 
+
 """
 문제 5 : 나머지 합 구하기
 N개의 수 A1, A2, ..,AN이 주어졌을 때 연속된 부분의 합이 M으로 나누어 떨어지는 구간의 개수를 구하는 프로그램을 작성하시오.
@@ -149,24 +153,25 @@ N개의 수 A1, A2, ..,AN이 주어졌을 때 연속된 부분의 합이 M으로
 ===========================
 """
 def solution5():
-    given=list(map(int,input("N과 M 입력 : ").split()))
-    numbers=list(map(int, input("numbers : ").split()))
-    answer=0
-    sum_list=[]
-    temp=0
+    given = list(map(int, input("N과 M 입력 : ").split()))
+    numbers = list(map(int, input("numbers : ").split()))
+    answer = 0
+    sum_list = []
+    temp = 0
     for i in range(given[0]):
-        temp+=numbers[i]
+        temp += numbers[i]
         sum_list.append(temp)
-        if(temp%given[1]==0):
-            answer+=1
+        if (temp % given[1] == 0):
+            answer += 1
 
     for i in range(given[0]):
-        for j in range(i+1,given[0]):
-            if((sum_list[j]-sum_list[i])%given[1]==0):
+        for j in range(i + 1, given[0]):
+            if ((sum_list[j] - sum_list[i]) % given[1] == 0):
                 answer += 1
 
     # 정석 : 합동식 이용하여 sum_list의 원소들을 M으로 나눈 나머지로 간단히 해놓고 접근
     print(answer)
+
 
 """
 문제 6 : 연속된 자연수의 합 구하기
@@ -181,22 +186,22 @@ def solution5():
 ===========================
 """
 def solution6():
-    given=int(input("자연수 : "))
-    l_pointer=0
-    r_pointer=0
-    answer=1
-    temp=0
+    given = int(input("자연수 : "))
+    l_pointer = 0
+    r_pointer = 0
+    answer = 1
+    temp = 0
 
-    while r_pointer<given:
-        if temp<given:
-            r_pointer+=1
-            temp+=r_pointer
-        elif temp>given:
-            l_pointer+=1
-            temp-=l_pointer
+    while r_pointer < given:
+        if temp < given:
+            r_pointer += 1
+            temp += r_pointer
+        elif temp > given:
+            l_pointer += 1
+            temp -= l_pointer
         else:
-            answer+=1
-            r_pointer+=1
+            answer += 1
+            r_pointer += 1
             temp += r_pointer
 
     print(answer)
@@ -220,28 +225,28 @@ def solution6():
 ===========================
 """
 def solution7():
-    answer=0
-    material=int(input("재료의 수 : "))
-    complete_num=int(input("완성 번호 : "))
-    numbers=list(map(int,input("재료들 : ").split()))
+    answer = 0
+    material = int(input("재료의 수 : "))
+    complete_num = int(input("완성 번호 : "))
+    numbers = list(map(int, input("재료들 : ").split()))
     numbers.sort()
-    l_pointer=0
-    r_pointer=len(numbers)-1
-    temp=numbers[0]+numbers[r_pointer]
-    while l_pointer<r_pointer:
-        if temp<complete_num:
-            temp-=numbers[l_pointer]
-            l_pointer+=1
-            temp+=numbers[l_pointer]
-        elif temp>complete_num:
-            temp-=numbers[r_pointer]
-            r_pointer-=1
-            temp+=numbers[r_pointer]
+    l_pointer = 0
+    r_pointer = len(numbers) - 1
+    temp = numbers[0] + numbers[r_pointer]
+    while l_pointer < r_pointer:
+        if temp < complete_num:
+            temp -= numbers[l_pointer]
+            l_pointer += 1
+            temp += numbers[l_pointer]
+        elif temp > complete_num:
+            temp -= numbers[r_pointer]
+            r_pointer -= 1
+            temp += numbers[r_pointer]
         else:
-            answer+=1
-            l_pointer+=1
-            r_pointer-=1
-            temp=numbers[l_pointer]+numbers[r_pointer]
+            answer += 1
+            l_pointer += 1
+            r_pointer -= 1
+            temp = numbers[l_pointer] + numbers[r_pointer]
 
     print(answer)
 
@@ -259,28 +264,29 @@ def solution7():
 ===========================
 """
 def solution8():
-    answer=0
-    given=int(input("수의 개수 : "))
-    numbers=list(map(int,input("수 : ").split()))
+    answer = 0
+    given = int(input("수의 개수 : "))
+    numbers = list(map(int, input("수 : ").split()))
     numbers.sort()
-    for i in range(2,given):
-        l_pointer=0
-        r_pointer=i-1
-        temp=numbers[l_pointer]+numbers[r_pointer]
-        while r_pointer<i:
-            if temp<i:
-                temp-=numbers[l_pointer]
-                l_pointer+=1
-                temp+=numbers[l_pointer]
-            elif temp>i:
+    for i in range(2, given):
+        l_pointer = 0
+        r_pointer = i - 1
+        temp = numbers[l_pointer] + numbers[r_pointer]
+        while r_pointer < i:
+            if temp < i:
+                temp -= numbers[l_pointer]
+                l_pointer += 1
+                temp += numbers[l_pointer]
+            elif temp > i:
                 temp -= numbers[r_pointer]
                 r_pointer -= 1
                 temp += numbers[r_pointer]
             else:
-                answer+=1
+                answer += 1
                 break
 
     print(answer)
+
 
 """
 문제 9 : DNA 비밀번호
@@ -310,7 +316,62 @@ DNA문자열이다. 민호는 임의의 DNA 문자열을 만들고 만들어진 
 ============================
 """
 def solution9():
-    answer=0
+    answer = 0
+    given = list(map(int, input("문자열 길이 & 부분 문자열 길이 : ").split()))
+    givenString = input("문자열 : ")
+    condition = list(map(int, input("A,C,G,T 최소개수 : ").split()))
+    endIndex = given[1] - 1
+    startIndex=endIndex-given[1]+1
+
+    temp = givenString[startIndex:endIndex + 1]
+    checkCondition = [0] * 4
+    for s in temp:
+        if s == 'A':
+            checkCondition[0] += 1
+        elif s == 'C':
+            checkCondition[1] += 1
+        elif s == 'G':
+            checkCondition[2] += 1
+        else:
+            checkCondition[3] += 1
+
+    if (condition[0] <= checkCondition[0] and
+        condition[1] <= checkCondition[1] and
+        condition[2] <= checkCondition[2] and
+        condition[3] <= checkCondition[3]):
+        answer+=1
+
+    while endIndex < given[0] - 1:
+        outChar=givenString[startIndex]
+        inChar=givenString[endIndex+1]
+
+        if outChar == 'A':
+            checkCondition[0] -= 1
+        elif outChar == 'C':
+            checkCondition[1] -= 1
+        elif outChar == 'G':
+            checkCondition[2] -= 1
+        else:
+            checkCondition[3] -= 1
+
+        if inChar == 'A':
+            checkCondition[0] += 1
+        elif inChar == 'C':
+            checkCondition[1] += 1
+        elif inChar == 'G':
+            checkCondition[2] += 1
+        else:
+            checkCondition[3] += 1
+
+        startIndex+=1
+        endIndex+=1
+
+        if (condition[0] <= checkCondition[0] and
+            condition[1] <= checkCondition[1] and
+            condition[2] <= checkCondition[2] and
+            condition[3] <= checkCondition[3]):
+            answer += 1
+
     print(answer)
 
 
@@ -328,8 +389,27 @@ N개의 수 A1,A2,...AN 과 L이 주어진다. A(i-L+1)~Ai 중 최솟값을 Di�
 ===========================
 """
 def solution10():
-    answer=0
+    # 정렬 안쓰고 deque로 풀어보기
+    answer = []
+    given=list(map(int, input("숫자 개수 & 윈도우 크기 : ").split()))
+    numbers=list(map(int, input("수 : ").split()))
+    endIdx=1
+    startIdx=endIdx-given[1]
+    while endIdx<=given[0]:
+        if startIdx<0:
+            temp=numbers[0:endIdx]
+            temp.sort()
+            answer.append(temp[0])
+        else:
+            temp = numbers[startIdx:endIdx]
+            temp.sort()
+            answer.append(temp[0])
+
+        endIdx+=1
+        startIdx+=1
+
     print(answer)
+
 
 """
 문제 11 : 스택으로 수열 만들기
@@ -351,8 +431,32 @@ def solution10():
 ===========================
 """
 def solution11():
-    answer=0
+    answer = ""
+    given=int(input("수의 개수 : "))
+    numbers=list(map(int, input("수열 : ").split()))
+    stack=[]
+    elt=1
+    for i in range(given):
+        while True:
+            if elt<numbers[i]:
+                stack.append(elt)
+                answer+='+'
+                elt+=1
+            elif elt==numbers[i]:
+                answer+="+-"
+                elt+=1
+                break
+            else:
+                if stack.pop()==numbers[i]:
+                    answer+='-'
+                else:
+                    answer="NO"
+                break
+        if answer=="NO":
+            break
+
     print(answer)
+
 
 """
 문제 12 : 오큰수 구하기
@@ -372,8 +476,9 @@ NGE(4)=-1 이다. A=[9,5,4,8]일 경우에는 NGE(1)=-1, NGE(2)=8, NGE(3)=8, NGE
 ===========================
 """
 def solution12():
-    answer=0
+    answer = 0
     print(answer)
+
 
 """
 문제 13 : 카드 게임
@@ -394,8 +499,9 @@ N장의 카드가 있다. 각각의 카드는 차례로 1에서 N까지의 번�
 ===========================
 """
 def solution13():
-    answer=0
+    answer = 0
     print(answer)
+
 
 """
 문제 14 : 절댓값 힙 구현하기
@@ -417,8 +523,9 @@ def solution13():
 ===========================
 """
 def solution14():
-    answer=0
+    answer = 0
     print(answer)
+
 
 """
 문제 15 : 수 정렬하기 1
@@ -433,7 +540,7 @@ N개의 수가 주어졌을 때 이를 오름차순 정렬하는 프로그램을
 ===========================
 """
 def solution15():
-    answer=0
+    answer = 0
     print(answer)
 
 
@@ -467,9 +574,8 @@ def solution15():
 ===========================
 """
 def solution16():
-    answer=0
+    answer = 0
     print(answer)
-
 
 
 """
@@ -483,5 +589,5 @@ def solution16():
 ===========================
 """
 def solution17():
-    answer=0
+    answer = 0
     print(answer)
