@@ -181,7 +181,24 @@ def solution5():
 ===========================
 """
 def solution6():
-    answer=0
+    given=int(input("자연수 : "))
+    l_pointer=0
+    r_pointer=0
+    answer=1
+    temp=0
+
+    while r_pointer<given:
+        if temp<given:
+            r_pointer+=1
+            temp+=r_pointer
+        elif temp>given:
+            l_pointer+=1
+            temp-=l_pointer
+        else:
+            answer+=1
+            r_pointer+=1
+            temp += r_pointer
+
     print(answer)
 
 
@@ -204,6 +221,28 @@ def solution6():
 """
 def solution7():
     answer=0
+    material=int(input("재료의 수 : "))
+    complete_num=int(input("완성 번호 : "))
+    numbers=list(map(int,input("재료들 : ").split()))
+    numbers.sort()
+    l_pointer=0
+    r_pointer=len(numbers)-1
+    temp=numbers[0]+numbers[r_pointer]
+    while l_pointer<r_pointer:
+        if temp<complete_num:
+            temp-=numbers[l_pointer]
+            l_pointer+=1
+            temp+=numbers[l_pointer]
+        elif temp>complete_num:
+            temp-=numbers[r_pointer]
+            r_pointer-=1
+            temp+=numbers[r_pointer]
+        else:
+            answer+=1
+            l_pointer+=1
+            r_pointer-=1
+            temp=numbers[l_pointer]+numbers[r_pointer]
+
     print(answer)
 
 
@@ -221,6 +260,26 @@ def solution7():
 """
 def solution8():
     answer=0
+    given=int(input("수의 개수 : "))
+    numbers=list(map(int,input("수 : ").split()))
+    numbers.sort()
+    for i in range(2,given):
+        l_pointer=0
+        r_pointer=i-1
+        temp=numbers[l_pointer]+numbers[r_pointer]
+        while r_pointer<i:
+            if temp<i:
+                temp-=numbers[l_pointer]
+                l_pointer+=1
+                temp+=numbers[l_pointer]
+            elif temp>i:
+                temp -= numbers[r_pointer]
+                r_pointer -= 1
+                temp += numbers[r_pointer]
+            else:
+                answer+=1
+                break
+
     print(answer)
 
 """
