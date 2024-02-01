@@ -465,7 +465,7 @@ def solution11():
 NGE(4)=-1 이다. A=[9,5,4,8]일 경우에는 NGE(1)=-1, NGE(2)=8, NGE(3)=8, NGE(4)=-1이다.
 
 1번째 줄에 수열 A의 크기 N(1<=N<=1,000,000),
-2번째 줄에 수열 A의 원소가 주어진다.
+2번째 줄에 수열 A의 원소가 주어진다.(1<=원소<=1,000,000)
 ==========Example==========                                                    
   input                             output
   4                수열의 크기        5 7 7 -1
@@ -476,7 +476,21 @@ NGE(4)=-1 이다. A=[9,5,4,8]일 경우에는 NGE(1)=-1, NGE(2)=8, NGE(3)=8, NGE
 ===========================
 """
 def solution12():
-    answer = 0
+    # 떠올리기 어려움...책 보고 함
+    given=int(input("수열의 크기 : "))
+    numbers=list(map(int, input("수열 : ").split()))
+    stack=[]
+    answer = [0]*given
+
+    for i in range(given):
+        while stack and numbers[stack[-1]]<numbers[i]:
+            answer[stack.pop()]=numbers[i]
+        stack.append(i)
+
+    for i in range(given):
+        if answer[i]==0:
+            answer[i]=-1
+
     print(answer)
 
 
@@ -500,7 +514,22 @@ N장의 카드가 있다. 각각의 카드는 차례로 1에서 N까지의 번�
 """
 def solution13():
     answer = 0
-    print(answer)
+    n=int(input("N : "))
+    deque=[]
+    # 0이면 버리고 1이면 아래로
+    temp=0
+    for i in range(1,n+1):
+        deque.append(n-i+1)
+    while len(deque)>1:
+        if temp==0:
+            deque.pop()
+            temp+=1
+        else:
+            top=deque.pop()
+            deque.insert(0,top)
+            temp-=1
+
+    print(deque[0])
 
 
 """
@@ -541,7 +570,16 @@ N개의 수가 주어졌을 때 이를 오름차순 정렬하는 프로그램을
 """
 def solution15():
     answer = 0
-    print(answer)
+    n=int(input("N : "))
+    numbers=list(map(int,input("numbers : ").split()))
+    for i in range(n):
+        for j in range(n-i-1):
+            if numbers[j]>numbers[j+1]:
+                temp = numbers[j + 1]
+                numbers[j+1]=numbers[j]
+                numbers[j]=temp
+
+    print(numbers)
 
 
 """
@@ -574,7 +612,21 @@ def solution15():
 ===========================
 """
 def solution16():
+    # 버블 정렬 쓰면 안됨 -> 다시 풀기
     answer = 0
+    n=int(input("N : "))
+    numbers=list(map(int,input("numbers : ").split()))
+    for i in range(n):
+        change=False
+        for j in range(n-i-1):
+            if numbers[j]>numbers[j+1]:
+                temp=numbers[j+1]
+                numbers[j+1]=numbers[j]
+                numbers[j]=temp
+                change=True
+        if change==False:
+            answer+=1
+
     print(answer)
 
 
@@ -585,9 +637,10 @@ def solution16():
 1번째 줄에 정렬할 수 N이 주어진다. N은 1,000,000,000보다 작거나 같은 자연수다.
 ==========Example==========                                                    
   input           output
-  2143            4321      
+  2 1 4 3         4 3 2 1       
 ===========================
 """
 def solution17():
-    answer = 0
-    print(answer)
+    numbers=list(map(int,input("numbers : ").split()))
+    numbers.sort()
+    print(numbers)
