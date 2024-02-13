@@ -1,6 +1,4 @@
-def solutions():
-    return 0
-
+from queue import PriorityQueue
 
 """
 문제 1 : 숫자의 합 구하기
@@ -552,7 +550,23 @@ def solution13():
 ===========================
 """
 def solution14():
-    answer = 0
+    # PriorityQueue import
+    answer = []
+    given=int(input("N : "))
+    numbers=list(map(int, input("numbers : ").split()))
+    myQueue=PriorityQueue()
+
+    for i in range(given):
+        number=numbers[i]
+        if number==0:
+            if myQueue.empty():
+                answer.append(0)
+            else:
+                answer.append(myQueue.get()[1])
+        else:
+            # 튜플 형식으로 저장 -> 정렬 기준 정할 수 있음
+            myQueue.put((abs(number),number))
+
     print(answer)
 
 
@@ -644,3 +658,69 @@ def solution17():
     numbers=list(map(int,input("numbers : ").split()))
     numbers.sort()
     print(numbers)
+
+"""
+문제 18 : ATM 인출 시간 계산하기
+==========Example==========                                                    
+  input           output
+  5               32
+  3 1 4 3 2       
+===========================
+"""
+def solution18():
+    answer=0
+    given=int(input("N : "))
+    numbers=list(map(int,input("numbers : ").split()))
+    numbers.sort()
+    for i in range(given):
+        answer+=numbers[i]*(given-i)
+    print(answer)
+
+
+"""
+문제 19 : K번째 수 구하기
+==========Example==========                                                    
+  input           output
+  5 2              2
+  4 1 2 3 5      
+===========================
+"""
+def solution19():
+    answer=0
+    print(answer)
+
+"""
+문제 20 : 수 정렬하기 2
+==========Example==========                                                    
+  input           output
+  5               1 2 3 4 5
+  5 4 3 2 1       
+===========================
+"""
+def solution20():
+    answer=0
+    print(answer)
+
+
+"""
+문제 21 : 버블 정렬 프로그램 2
+==========Example==========                                                    
+  input             output
+  8                 11
+  3 2 8 1 7 4 5 6       
+===========================
+"""
+def solution21():
+    answer=0
+    print(answer)
+
+"""
+문제 22 : 수 정렬하기 3
+==========Example==========                                                    
+  input                                             output
+  11 215 15 344 372 294 100 8 145 24 198 831        8 15 24 100 145 198 215 294 344 372 831
+===========================
+"""
+def solution22():
+    answer=0
+    print(answer)
