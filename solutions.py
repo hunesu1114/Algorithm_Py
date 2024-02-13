@@ -686,8 +686,10 @@ def solution18():
 ===========================
 """
 def solution19():
-    answer=0
-    print(answer)
+    given=list(map(int,input("N & index : ").split()))
+    numbers=list(map(int, input("numbers : ").split()))
+    numbers.sort()
+    print(numbers[given[1]-1])
 
 """
 문제 20 : 수 정렬하기 2
@@ -699,6 +701,7 @@ def solution19():
 """
 def solution20():
     answer=0
+    # sort()
     print(answer)
 
 
@@ -711,16 +714,27 @@ def solution20():
 ===========================
 """
 def solution21():
+    given=int(input("N : "))
+    numbers = list(map(int, input("numbers : ").split()))
     answer=0
+    for i in range(given):
+        for j in range(given-i-1):
+            if(numbers[j]>numbers[j+1]):
+                temp=numbers[i]
+                numbers[i]=numbers[i+1]
+                numbers[i+1]=temp
+                answer+=1
     print(answer)
 
 """
 문제 22 : 수 정렬하기 3
 ==========Example==========                                                    
   input                                             output
-  11 215 15 344 372 294 100 8 145 24 198 831        8 15 24 100 145 198 215 294 344 372 831
+  11 
+  215 15 344 372 294 100 8 145 24 198 831           8 15 24 100 145 198 215 294 344 372 831
 ===========================
 """
 def solution22():
     answer=0
+    # sort()
     print(answer)
