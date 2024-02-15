@@ -935,7 +935,38 @@ DFS와 BFS를 수행한 결과를 출력한다. V부터 방문된 점을 순서�
 ===========================
 """
 def solution26():
-    answer = 0
+    answer = [[],[]]
+    n,m,s=map(int,input("노드 개수 & 엣지 개수 & 시작 번호 : ").split())
+    nList=[[] for _ in range(n+1)]
+    vList1=[False]*(n+1)
+    vList2=[False]*(n+1)
+
+    def DFS(v):
+        answer[0].append(v)
+        vList1[v]=True
+        for i in nList[v]:
+            if not vList1[i]:
+                DFS(i)
+
+    for i in range(m):
+        a,b=map(int,input("노드 번호 : ").split())
+        nList[a].append(b)
+        nList[b].append(a)
+        nList[a].sort()
+        nList[b].sort()
+
+    myQueue=[s]
+    vList2[s] = True
+    while myQueue:
+        node=myQueue.pop()
+        answer[1].append(node)
+        for i in nList[node]:
+            if not vList2[i]:
+                myQueue.insert(0, i)
+                vList2[i]=True
+
+
+    DFS(s)
     print(answer)
 
 
@@ -957,7 +988,7 @@ NxM 크기의 미로가 주어질 때 (1,1)에서 출발해 (N,M)의 위치로 �
 #1                                          #2
   input                       output        input                       output
   4 6                         15            4 6                         9
-  101111                                     110110
+  101111                                    110110
   101010                                    110110
   101011                                    111111
   111011                                    111101
