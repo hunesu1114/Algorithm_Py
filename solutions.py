@@ -769,7 +769,31 @@ def solution22():
 ===========================
 """
 def solution23():
+    # DFS -> 인접리스트, 재귀함수, 방문리스트 선언부터
     answer=0
+    n, e=map(int,input("노드의 개수 & 엣지 개수 : ").split())
+    nList=[[] for _ in range(n+1)]
+    vList=[False]*(n+1)
+
+    # 재귀함수로 탐색!
+    def DFS(v):
+        vList[v]=True
+        for i in nList[v]:
+            if not vList[i]:
+                DFS(i)
+
+    for i in range(e):
+        nodes=list(map(int,input("인접 노드 : ").split()))
+        nList[nodes[0]].append(nodes[1])
+        nList[nodes[1]].append(nodes[0])
+
+    print("nList : {0}".format(nList))
+
+    for i in (1,len(vList)-1):
+        if not vList[i]:
+            answer+=1
+            DFS(i)
+
     print(answer)
 
 """
@@ -783,7 +807,32 @@ N(1<=N<=8)의 자리의 숫자 중 신기한 소수를 모두 찾는 코드를 �
 ===========================
 """
 def solution24():
-    answer=0
+    answer=[]
+    n=int(input("자릿수 : "))
+
+    # 소수 판별
+    def primeCriteria(n):
+        for i in range(2, int(n**(1/2)+1)):
+            if n%i==0:
+                return False
+        return True
+
+    def DFS(v):
+        for i in range(10):
+            number = v*10+i
+            if primeCriteria(number):
+                if number//(10**(n-1)) > 0:
+                    if number//(10**(n-1))>9:
+                        break
+                    else:
+                        answer.append(number)
+                else :
+                    DFS(number)
+
+    for i in range(2,10):
+        if primeCriteria(i):
+            DFS(i)
+
     print(answer)
 
 
@@ -825,7 +874,34 @@ def solution24():
 """
 def solution25():
     answer = 0
-    print(answer)
+    n,m=map(int, input("사람수 & 관계수 : ").split())
+    nList=[[] for _ in range(n)]
+    vList=[False]*n
+
+    def DFS(v,depth):
+        print(depth)
+        nonlocal answer
+        if depth==5:
+            answer=1
+        vList[v]=True
+        for i in nList[v]:
+            if not vList[i]:
+                DFS(i,depth+1)
+
+    for i in range(m):
+        a, b=map(int,input("사람 번호 두개 : ").split())
+        nList[a].append(b)
+        nList[b].append(a)
+
+    print("nList : {0}".format(nList))
+
+    for i in range(n):
+        print("i : {0}".format(i))
+        DFS(i,1)
+        # 각 노드에서 최대 길이를 잴거라서 visit 초기화 해줘야 함
+        vList = [False] * n
+
+    print("answer : {0}".format(answer))
 
 
 """
