@@ -1007,8 +1007,37 @@ NxM 크기의 미로가 주어질 때 (1,1)에서 출발해 (N,M)의 위치로 �
 ===========================
 """
 def solution27():
-    answer = 0
-    print(answer)
+    r,c=map(int,input("rowCnt & colCnt : ").split())
+    A=[[0]*c for _ in range(r)]
+    vList=[[False]*c for _ in range(r)]
+    dx=[0,1,0,-1]
+    dy=[-1,0,1,0]
+
+    for i in range(r):
+        numbers=list(input("numbers : "))
+        for j in range(c):
+            A[i][j]=int(numbers[j])
+
+    def BFS(i,j):
+        # START
+        queue = [[0, 0]]
+        vList[0][0] = True
+        while queue:
+            cord = queue.pop()
+            x=cord[0]
+            y=cord[1]
+            for i in range(4):
+                nX=x+dx[i]
+                nY=y+dy[i]
+                if nX>=0 and nY>=0 and nX<r and nY<c and A[nX][nY]!=0 and vList[nX][nY] == False:
+                    queue.insert(0,[nX,nY])
+                    vList[nX][nY]=True
+                    A[nX][nY]+=A[x][y]
+    BFS(0,0)
+    for i in range(r):
+        print(A[i])
+
+    print(A[r-1][c-1])
 
 
 """
@@ -1032,9 +1061,30 @@ def solution27():
   4 2 4 3 3 5 6 -1
   5 4 6 -1
 ===========================
+
+Theorem : 
+1. DFS를 통해 임의의 정점(x)으로부터 가장 먼 정점(y)을 구한다.
+2. DFS를 통해 구해진 (y)정점으로부터 가장 먼 정점(z)를 구한다.
+3. (y) 정점과 (z) 정점을 잇는 경로가 트리의 지름이 된다.
 """
 def solution28():
     answer = 0
+    v=int(input("V : "))
+    nList=[[] for _ in range(v)]
+
+    for i in range(v):
+        numbers=list(map(int,input("numbers : ").split()))
+        length=len(numbers)
+        temp=0
+        for j in range(1,length-1):
+            if j%2==1:
+                temp=numbers[j]
+            else:
+                nList[i].append((temp,numbers[j]))
+
+    def BFS(v):
+        INGINGINGINGINGING
+
     print(answer)
 
 
@@ -1058,7 +1108,37 @@ N개의 정수 A[1], A[2], ...,A[N]이 주어져 있을 때 이 안에 X라는 �
 ===========================
 """
 def solution29():
-    answer = 0
+    answer=[]
+    numbers=list(map(int, input("numbers : ").split()))
+    fNumbers=list(map(int,input("fnumbers : ").split()))
+
+    numbers.sort()
+
+    for i in range(len(fNumbers)):
+        isFound=False
+        startIdx = 0
+        endIdx = len(numbers) - 1
+        midIdx = int((startIdx + endIdx) / 2)
+
+        while startIdx <= endIdx:
+            if fNumbers[i]<numbers[midIdx]:
+                endIdx=midIdx-1
+                midIdx = int((startIdx + endIdx) / 2)
+
+
+            elif fNumbers[i]>numbers[midIdx]:
+                startIdx=midIdx+1
+                midIdx = int((startIdx + endIdx) / 2)
+
+            else:
+                isFound=True
+                break
+
+        if isFound:
+            answer.append(1)
+        else:
+            answer.append(0)
+
     print(answer)
 
 
@@ -1079,12 +1159,15 @@ def solution29():
 """
 def solution30():
     answer = 0
+    N,M=map(int,input("N, M : ").split())
+    numbers=list(map(int,input("numbers : ")))
+
     print(answer)
 
 
 """
 문제 31 : 배열에서 K번째 수 찾기
-세준이는 크기가 NxM인 배열 A를 만들었다. 배열에 들어있는 수는 A[i][j]=i*j이다. 이 수를 1차원 배열 B에 넣으면 B의 크기는 NxM이 된다.
+세준이는 크기가 NxN인 배열 A를 만들었다. 배열에 들어있는 수는 A[i][j]=i*j이다. 이 수를 1차원 배열 B에 넣으면 B의 크기는 NxN이 된다.
 B를 오름차순 정렬했을 때, B[k]를 구하라. (배열 A와 B의 인덱스는 1부터 시작한다.)
 
 1번째 줄에 배열의 크기 N이 주어진다. N은 10^5 보다 작거나 같은 자연수다. 
@@ -1097,7 +1180,15 @@ B를 오름차순 정렬했을 때, B[k]를 구하라. (배열 A와 B의 인덱�
 """
 def solution31():
     answer = 0
-    print(answer)
+    N, k=map(int,input("N, k : ").split())
+
+    B=[]
+    for i in range(N):
+        for j in range(N):
+            B.append((i+1)*(j+1))
+
+    B.sort()
+    print(B[k])
 
 """
 문제 32 : 동전 개수의 최솟값 구하기

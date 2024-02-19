@@ -1,4 +1,4 @@
 import solutions
 
 if __name__ == '__main__':
-    solutions.solution26()
+    solutions.solution28()
