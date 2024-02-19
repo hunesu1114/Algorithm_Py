@@ -1071,6 +1071,7 @@ def solution28():
     answer = 0
     v=int(input("V : "))
     nList=[[] for _ in range(v)]
+    vList=[[False,0] for _ in range(v)]
 
     for i in range(v):
         numbers=list(map(int,input("numbers : ").split()))
@@ -1082,10 +1083,30 @@ def solution28():
             else:
                 nList[i].append((temp,numbers[j]))
 
-    def BFS(v):
-        INGINGINGINGINGING
+    print(nList)
 
-    print(answer)
+    node=1
+    def BFS(v):
+        nonlocal node
+        queue=[v]
+        vList[v-1][0]=True
+        while queue:
+            pop = queue.pop()
+            for t in nList[pop-1]:
+                if vList[t[0]-1][0]==False:
+                    queue.insert(0,t[0])
+                    vList[t[0]-1][0] = True
+                    vList[t[0]-1][1] = t[1] + vList[pop-1][1]
+        for i in range(len(vList)):
+            if vList[i][1]>vList[node-1][1]:
+                node=i+1
+
+    BFS(1)
+    print(node)
+    vList=[[False,0] for _ in range(v)]
+
+    BFS(node)
+    print(vList[node-1][1])
 
 
 """
