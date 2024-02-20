@@ -9,6 +9,8 @@ num1 : 숫자의 개수
 num2 : 공백 없이 주어진 num1개의 숫자
 ==========================
 """
+
+
 def solution1():
     a = int(input("num1 : "))
     b = int(input("num2 : "))
@@ -29,6 +31,8 @@ M이라 할 때 모든 점수를 (점수)/M*100 으로 고쳤다. 예를 들어 
 numbers : 각 과목의 시험 성적 list
 ==========================
 """
+
+
 def solution2():
     values = list(map(int, input("점수들을 입력 : ").split()))
     maxValue = max(values)
@@ -52,6 +56,8 @@ def solution2():
   5 5
 ===========================
 """
+
+
 def solution3():
     given = list(map(int, input("데이터의 개수 & 질의 개수 : ").split()))
     numbers = list(map(int, input("numbers : ").split()))
@@ -93,6 +99,8 @@ N x N개의 수가 N x N 크기의 표에 채워져 있다. 표 안의 수 중 (
   1 1 4 4    구간 합 (X1,Y1), (X2,Y2) 2번째 질의
 ===========================
 """
+
+
 def solution4():
     given = list(map(int, input("2차원 배열 크기 & 구간 합 질의 개수 : ").split()))
     matrix = []
@@ -150,6 +158,8 @@ N개의 수 A1, A2, ..,AN이 주어졌을 때 연속된 부분의 합이 M으로
   1 2 3 1 2                                   
 ===========================
 """
+
+
 def solution5():
     given = list(map(int, input("N과 M 입력 : ").split()))
     numbers = list(map(int, input("numbers : ").split()))
@@ -183,6 +193,8 @@ def solution5():
   15                                4
 ===========================
 """
+
+
 def solution6():
     given = int(input("자연수 : "))
     l_pointer = 0
@@ -222,6 +234,8 @@ def solution6():
   2 7 4 1 5 3  재료들
 ===========================
 """
+
+
 def solution7():
     answer = 0
     material = int(input("재료의 수 : "))
@@ -261,6 +275,8 @@ def solution7():
   1 2 3 4 5 6 7 8 9 10
 ===========================
 """
+
+
 def solution8():
     answer = 0
     given = int(input("수의 개수 : "))
@@ -313,13 +329,15 @@ DNA문자열이다. 민호는 임의의 DNA 문자열을 만들고 만들어진 
   2 0 1 1    A,C,G,T의 최소 개수
 ============================
 """
+
+
 def solution9():
     answer = 0
     given = list(map(int, input("문자열 길이 & 부분 문자열 길이 : ").split()))
     givenString = input("문자열 : ")
     condition = list(map(int, input("A,C,G,T 최소개수 : ").split()))
     endIndex = given[1] - 1
-    startIndex=endIndex-given[1]+1
+    startIndex = endIndex - given[1] + 1
 
     temp = givenString[startIndex:endIndex + 1]
     checkCondition = [0] * 4
@@ -334,14 +352,14 @@ def solution9():
             checkCondition[3] += 1
 
     if (condition[0] <= checkCondition[0] and
-        condition[1] <= checkCondition[1] and
-        condition[2] <= checkCondition[2] and
-        condition[3] <= checkCondition[3]):
-        answer+=1
+            condition[1] <= checkCondition[1] and
+            condition[2] <= checkCondition[2] and
+            condition[3] <= checkCondition[3]):
+        answer += 1
 
     while endIndex < given[0] - 1:
-        outChar=givenString[startIndex]
-        inChar=givenString[endIndex+1]
+        outChar = givenString[startIndex]
+        inChar = givenString[endIndex + 1]
 
         if outChar == 'A':
             checkCondition[0] -= 1
@@ -361,13 +379,13 @@ def solution9():
         else:
             checkCondition[3] += 1
 
-        startIndex+=1
-        endIndex+=1
+        startIndex += 1
+        endIndex += 1
 
         if (condition[0] <= checkCondition[0] and
-            condition[1] <= checkCondition[1] and
-            condition[2] <= checkCondition[2] and
-            condition[3] <= checkCondition[3]):
+                condition[1] <= checkCondition[1] and
+                condition[2] <= checkCondition[2] and
+                condition[3] <= checkCondition[3]):
             answer += 1
 
     print(answer)
@@ -386,16 +404,18 @@ N개의 수 A1,A2,...AN 과 L이 주어진다. A(i-L+1)~Ai 중 최솟값을 Di�
   1 5 2 3 6 2 3 7 3 5 2 6
 ===========================
 """
+
+
 def solution10():
     # 정렬 안쓰고 deque로 풀어보기
     answer = []
-    given=list(map(int, input("숫자 개수 & 윈도우 크기 : ").split()))
-    numbers=list(map(int, input("수 : ").split()))
-    endIdx=1
-    startIdx=endIdx-given[1]
-    while endIdx<=given[0]:
-        if startIdx<0:
-            temp=numbers[0:endIdx]
+    given = list(map(int, input("숫자 개수 & 윈도우 크기 : ").split()))
+    numbers = list(map(int, input("수 : ").split()))
+    endIdx = 1
+    startIdx = endIdx - given[1]
+    while endIdx <= given[0]:
+        if startIdx < 0:
+            temp = numbers[0:endIdx]
             temp.sort()
             answer.append(temp[0])
         else:
@@ -403,8 +423,8 @@ def solution10():
             temp.sort()
             answer.append(temp[0])
 
-        endIdx+=1
-        startIdx+=1
+        endIdx += 1
+        startIdx += 1
 
     print(answer)
 
@@ -428,29 +448,31 @@ def solution10():
   1 2 5 3 4
 ===========================
 """
+
+
 def solution11():
     answer = ""
-    given=int(input("수의 개수 : "))
-    numbers=list(map(int, input("수열 : ").split()))
-    stack=[]
-    elt=1
+    given = int(input("수의 개수 : "))
+    numbers = list(map(int, input("수열 : ").split()))
+    stack = []
+    elt = 1
     for i in range(given):
         while True:
-            if elt<numbers[i]:
+            if elt < numbers[i]:
                 stack.append(elt)
-                answer+='+'
-                elt+=1
-            elif elt==numbers[i]:
-                answer+="+-"
-                elt+=1
+                answer += '+'
+                elt += 1
+            elif elt == numbers[i]:
+                answer += "+-"
+                elt += 1
                 break
             else:
-                if stack.pop()==numbers[i]:
-                    answer+='-'
+                if stack.pop() == numbers[i]:
+                    answer += '-'
                 else:
-                    answer="NO"
+                    answer = "NO"
                 break
-        if answer=="NO":
+        if answer == "NO":
             break
 
     print(answer)
@@ -473,21 +495,23 @@ NGE(4)=-1 이다. A=[9,5,4,8]일 경우에는 NGE(1)=-1, NGE(2)=8, NGE(3)=8, NGE
   9 5 4 8
 ===========================
 """
+
+
 def solution12():
     # 떠올리기 어려움...책 보고 함
-    given=int(input("수열의 크기 : "))
-    numbers=list(map(int, input("수열 : ").split()))
-    stack=[]
-    answer = [0]*given
+    given = int(input("수열의 크기 : "))
+    numbers = list(map(int, input("수열 : ").split()))
+    stack = []
+    answer = [0] * given
 
     for i in range(given):
-        while stack and numbers[stack[-1]]<numbers[i]:
-            answer[stack.pop()]=numbers[i]
+        while stack and numbers[stack[-1]] < numbers[i]:
+            answer[stack.pop()] = numbers[i]
         stack.append(i)
 
     for i in range(given):
-        if answer[i]==0:
-            answer[i]=-1
+        if answer[i] == 0:
+            answer[i] = -1
 
     print(answer)
 
@@ -510,22 +534,24 @@ N장의 카드가 있다. 각각의 카드는 차례로 1에서 N까지의 번�
   6      카드의 개수        4
 ===========================
 """
+
+
 def solution13():
     answer = 0
-    n=int(input("N : "))
-    deque=[]
+    n = int(input("N : "))
+    deque = []
     # 0이면 버리고 1이면 아래로
-    temp=0
-    for i in range(1,n+1):
-        deque.append(n-i+1)
-    while len(deque)>1:
-        if temp==0:
+    temp = 0
+    for i in range(1, n + 1):
+        deque.append(n - i + 1)
+    while len(deque) > 1:
+        if temp == 0:
             deque.pop()
-            temp+=1
+            temp += 1
         else:
-            top=deque.pop()
-            deque.insert(0,top)
-            temp-=1
+            top = deque.pop()
+            deque.insert(0, top)
+            temp -= 1
 
     print(deque[0])
 
@@ -549,23 +575,25 @@ def solution13():
   1 -1 0 0 0 1 1 -1 -1 2 -2 0 0 0 0 0 0 0
 ===========================
 """
+
+
 def solution14():
     # PriorityQueue import
     answer = []
-    given=int(input("N : "))
-    numbers=list(map(int, input("numbers : ").split()))
-    myQueue=PriorityQueue()
+    given = int(input("N : "))
+    numbers = list(map(int, input("numbers : ").split()))
+    myQueue = PriorityQueue()
 
     for i in range(given):
-        number=numbers[i]
-        if number==0:
+        number = numbers[i]
+        if number == 0:
             if myQueue.empty():
                 answer.append(0)
             else:
                 answer.append(myQueue.get()[1])
         else:
             # 튜플 형식으로 저장 -> 정렬 기준 정할 수 있음
-            myQueue.put((abs(number),number))
+            myQueue.put((abs(number), number))
 
     print(answer)
 
@@ -582,16 +610,18 @@ N개의 수가 주어졌을 때 이를 오름차순 정렬하는 프로그램을
   5 2 3 4 1
 ===========================
 """
+
+
 def solution15():
     answer = 0
-    n=int(input("N : "))
-    numbers=list(map(int,input("numbers : ").split()))
+    n = int(input("N : "))
+    numbers = list(map(int, input("numbers : ").split()))
     for i in range(n):
-        for j in range(n-i-1):
-            if numbers[j]>numbers[j+1]:
+        for j in range(n - i - 1):
+            if numbers[j] > numbers[j + 1]:
                 temp = numbers[j + 1]
-                numbers[j+1]=numbers[j]
-                numbers[j]=temp
+                numbers[j + 1] = numbers[j]
+                numbers[j] = temp
 
     print(numbers)
 
@@ -625,21 +655,23 @@ def solution15():
   10 1 5 2 3
 ===========================
 """
+
+
 def solution16():
     # 버블 정렬 쓰면 안됨 -> 다시 풀기
     answer = 0
-    n=int(input("N : "))
-    numbers=list(map(int,input("numbers : ").split()))
+    n = int(input("N : "))
+    numbers = list(map(int, input("numbers : ").split()))
     for i in range(n):
-        change=False
-        for j in range(n-i-1):
-            if numbers[j]>numbers[j+1]:
-                temp=numbers[j+1]
-                numbers[j+1]=numbers[j]
-                numbers[j]=temp
-                change=True
-        if change==False:
-            answer+=1
+        change = False
+        for j in range(n - i - 1):
+            if numbers[j] > numbers[j + 1]:
+                temp = numbers[j + 1]
+                numbers[j + 1] = numbers[j]
+                numbers[j] = temp
+                change = True
+        if change == False:
+            answer += 1
 
     print(answer)
 
@@ -654,10 +686,13 @@ def solution16():
   2 1 4 3         4 3 2 1       
 ===========================
 """
+
+
 def solution17():
-    numbers=list(map(int,input("numbers : ").split()))
+    numbers = list(map(int, input("numbers : ").split()))
     numbers.sort()
     print(numbers)
+
 
 """
 문제 18 : ATM 인출 시간 계산하기
@@ -667,13 +702,15 @@ def solution17():
   3 1 4 3 2       
 ===========================
 """
+
+
 def solution18():
-    answer=0
-    given=int(input("N : "))
-    numbers=list(map(int,input("numbers : ").split()))
+    answer = 0
+    given = int(input("N : "))
+    numbers = list(map(int, input("numbers : ").split()))
     numbers.sort()
     for i in range(given):
-        answer+=numbers[i]*(given-i)
+        answer += numbers[i] * (given - i)
     print(answer)
 
 
@@ -685,11 +722,14 @@ def solution18():
   4 1 2 3 5      
 ===========================
 """
+
+
 def solution19():
-    given=list(map(int,input("N & index : ").split()))
-    numbers=list(map(int, input("numbers : ").split()))
+    given = list(map(int, input("N & index : ").split()))
+    numbers = list(map(int, input("numbers : ").split()))
     numbers.sort()
-    print(numbers[given[1]-1])
+    print(numbers[given[1] - 1])
+
 
 """
 문제 20 : 수 정렬하기 2
@@ -699,8 +739,10 @@ def solution19():
   5 4 3 2 1       
 ===========================
 """
+
+
 def solution20():
-    answer=0
+    answer = 0
     # sort()
     print(answer)
 
@@ -713,18 +755,21 @@ def solution20():
   3 2 8 1 7 4 5 6       
 ===========================
 """
+
+
 def solution21():
-    given=int(input("N : "))
+    given = int(input("N : "))
     numbers = list(map(int, input("numbers : ").split()))
-    answer=0
+    answer = 0
     for i in range(given):
-        for j in range(given-i-1):
-            if(numbers[j]>numbers[j+1]):
-                temp=numbers[i]
-                numbers[i]=numbers[i+1]
-                numbers[i+1]=temp
-                answer+=1
+        for j in range(given - i - 1):
+            if (numbers[j] > numbers[j + 1]):
+                temp = numbers[i]
+                numbers[i] = numbers[i + 1]
+                numbers[i + 1] = temp
+                answer += 1
     print(answer)
+
 
 """
 문제 22 : 수 정렬하기 3
@@ -734,10 +779,13 @@ def solution21():
   215 15 344 372 294 100 8 145 24 198 831           8 15 24 100 145 198 215 294 344 372 831
 ===========================
 """
+
+
 def solution22():
-    answer=0
+    answer = 0
     # sort()
     print(answer)
+
 
 """
 문제 23 : 연결 요소의 개수 구하기
@@ -768,33 +816,36 @@ def solution22():
   2 3
 ===========================
 """
+
+
 def solution23():
     # DFS -> 인접리스트, 재귀함수, 방문리스트 선언부터
-    answer=0
-    n, e=map(int,input("노드의 개수 & 엣지 개수 : ").split())
-    nList=[[] for _ in range(n+1)]
-    vList=[False]*(n+1)
+    answer = 0
+    n, e = map(int, input("노드의 개수 & 엣지 개수 : ").split())
+    nList = [[] for _ in range(n + 1)]
+    vList = [False] * (n + 1)
 
     # 재귀함수로 탐색!
     def DFS(v):
-        vList[v]=True
+        vList[v] = True
         for i in nList[v]:
             if not vList[i]:
                 DFS(i)
 
     for i in range(e):
-        nodes=list(map(int,input("인접 노드 : ").split()))
+        nodes = list(map(int, input("인접 노드 : ").split()))
         nList[nodes[0]].append(nodes[1])
         nList[nodes[1]].append(nodes[0])
 
     print("nList : {0}".format(nList))
 
-    for i in (1,len(vList)-1):
+    for i in (1, len(vList) - 1):
         if not vList[i]:
-            answer+=1
+            answer += 1
             DFS(i)
 
     print(answer)
+
 
 """
 문제 24 : 신기한 소수 찾기
@@ -806,30 +857,32 @@ N(1<=N<=8)의 자리의 숫자 중 신기한 소수를 모두 찾는 코드를 �
   4                           2333 2339 2393 2399 2939 3119 3137 3733 3739 3793 3797 5939 7193 7331 7333 7393
 ===========================
 """
+
+
 def solution24():
-    answer=[]
-    n=int(input("자릿수 : "))
+    answer = []
+    n = int(input("자릿수 : "))
 
     # 소수 판별
     def primeCriteria(n):
-        for i in range(2, int(n**(1/2)+1)):
-            if n%i==0:
+        for i in range(2, int(n ** (1 / 2) + 1)):
+            if n % i == 0:
                 return False
         return True
 
     def DFS(v):
         for i in range(10):
-            number = v*10+i
+            number = v * 10 + i
             if primeCriteria(number):
-                if number//(10**(n-1)) > 0:
-                    if number//(10**(n-1))>9:
+                if number // (10 ** (n - 1)) > 0:
+                    if number // (10 ** (n - 1)) > 9:
                         break
                     else:
                         answer.append(number)
-                else :
+                else:
                     DFS(number)
 
-    for i in range(2,10):
+    for i in range(2, 10):
         if primeCriteria(i):
             DFS(i)
 
@@ -872,24 +925,26 @@ def solution24():
   0 5
 ===========================
 """
+
+
 def solution25():
     answer = 0
-    n,m=map(int, input("사람수 & 관계수 : ").split())
-    nList=[[] for _ in range(n)]
-    vList=[False]*n
+    n, m = map(int, input("사람수 & 관계수 : ").split())
+    nList = [[] for _ in range(n)]
+    vList = [False] * n
 
-    def DFS(v,depth):
+    def DFS(v, depth):
         print(depth)
         nonlocal answer
-        if depth==5:
-            answer=1
-        vList[v]=True
+        if depth == 5:
+            answer = 1
+        vList[v] = True
         for i in nList[v]:
             if not vList[i]:
-                DFS(i,depth+1)
+                DFS(i, depth + 1)
 
     for i in range(m):
-        a, b=map(int,input("사람 번호 두개 : ").split())
+        a, b = map(int, input("사람 번호 두개 : ").split())
         nList[a].append(b)
         nList[b].append(a)
 
@@ -897,7 +952,7 @@ def solution25():
 
     for i in range(n):
         print("i : {0}".format(i))
-        DFS(i,1)
+        DFS(i, 1)
         # 각 노드에서 최대 길이를 잴거라서 visit 초기화 해줘야 함
         vList = [False] * n
 
@@ -934,37 +989,38 @@ DFS와 BFS를 수행한 결과를 출력한다. V부터 방문된 점을 순서�
   3 1
 ===========================
 """
+
+
 def solution26():
-    answer = [[],[]]
-    n,m,s=map(int,input("노드 개수 & 엣지 개수 & 시작 번호 : ").split())
-    nList=[[] for _ in range(n+1)]
-    vList1=[False]*(n+1)
-    vList2=[False]*(n+1)
+    answer = [[], []]
+    n, m, s = map(int, input("노드 개수 & 엣지 개수 & 시작 번호 : ").split())
+    nList = [[] for _ in range(n + 1)]
+    vList1 = [False] * (n + 1)
+    vList2 = [False] * (n + 1)
 
     def DFS(v):
         answer[0].append(v)
-        vList1[v]=True
+        vList1[v] = True
         for i in nList[v]:
             if not vList1[i]:
                 DFS(i)
 
     for i in range(m):
-        a,b=map(int,input("노드 번호 : ").split())
+        a, b = map(int, input("노드 번호 : ").split())
         nList[a].append(b)
         nList[b].append(a)
         nList[a].sort()
         nList[b].sort()
 
-    myQueue=[s]
+    myQueue = [s]
     vList2[s] = True
     while myQueue:
-        node=myQueue.pop()
+        node = myQueue.pop()
         answer[1].append(node)
         for i in nList[node]:
             if not vList2[i]:
                 myQueue.insert(0, i)
-                vList2[i]=True
-
+                vList2[i] = True
 
     DFS(s)
     print(answer)
@@ -1006,38 +1062,41 @@ NxM 크기의 미로가 주어질 때 (1,1)에서 출발해 (N,M)의 위치로 �
                                             
 ===========================
 """
+
+
 def solution27():
-    r,c=map(int,input("rowCnt & colCnt : ").split())
-    A=[[0]*c for _ in range(r)]
-    vList=[[False]*c for _ in range(r)]
-    dx=[0,1,0,-1]
-    dy=[-1,0,1,0]
+    r, c = map(int, input("rowCnt & colCnt : ").split())
+    A = [[0] * c for _ in range(r)]
+    vList = [[False] * c for _ in range(r)]
+    dx = [0, 1, 0, -1]
+    dy = [-1, 0, 1, 0]
 
     for i in range(r):
-        numbers=list(input("numbers : "))
+        numbers = list(input("numbers : "))
         for j in range(c):
-            A[i][j]=int(numbers[j])
+            A[i][j] = int(numbers[j])
 
-    def BFS(i,j):
+    def BFS(i, j):
         # START
         queue = [[0, 0]]
         vList[0][0] = True
         while queue:
             cord = queue.pop()
-            x=cord[0]
-            y=cord[1]
+            x = cord[0]
+            y = cord[1]
             for i in range(4):
-                nX=x+dx[i]
-                nY=y+dy[i]
-                if nX>=0 and nY>=0 and nX<r and nY<c and A[nX][nY]!=0 and vList[nX][nY] == False:
-                    queue.insert(0,[nX,nY])
-                    vList[nX][nY]=True
-                    A[nX][nY]+=A[x][y]
-    BFS(0,0)
+                nX = x + dx[i]
+                nY = y + dy[i]
+                if nX >= 0 and nY >= 0 and nX < r and nY < c and A[nX][nY] != 0 and vList[nX][nY] == False:
+                    queue.insert(0, [nX, nY])
+                    vList[nX][nY] = True
+                    A[nX][nY] += A[x][y]
+
+    BFS(0, 0)
     for i in range(r):
         print(A[i])
 
-    print(A[r-1][c-1])
+    print(A[r - 1][c - 1])
 
 
 """
@@ -1067,46 +1126,49 @@ Theorem :
 2. DFS를 통해 구해진 (y)정점으로부터 가장 먼 정점(z)를 구한다.
 3. (y) 정점과 (z) 정점을 잇는 경로가 트리의 지름이 된다.
 """
+
+
 def solution28():
     answer = 0
-    v=int(input("V : "))
-    nList=[[] for _ in range(v)]
-    vList=[[False,0] for _ in range(v)]
+    v = int(input("V : "))
+    nList = [[] for _ in range(v)]
+    vList = [[False, 0] for _ in range(v)]
 
     for i in range(v):
-        numbers=list(map(int,input("numbers : ").split()))
-        length=len(numbers)
-        temp=0
-        for j in range(1,length-1):
-            if j%2==1:
-                temp=numbers[j]
+        numbers = list(map(int, input("numbers : ").split()))
+        length = len(numbers)
+        temp = 0
+        for j in range(1, length - 1):
+            if j % 2 == 1:
+                temp = numbers[j]
             else:
-                nList[i].append((temp,numbers[j]))
+                nList[i].append((temp, numbers[j]))
 
     print(nList)
 
-    node=1
+    node = 1
+
     def BFS(v):
         nonlocal node
-        queue=[v]
-        vList[v-1][0]=True
+        queue = [v]
+        vList[v - 1][0] = True
         while queue:
             pop = queue.pop()
-            for t in nList[pop-1]:
-                if vList[t[0]-1][0]==False:
-                    queue.insert(0,t[0])
-                    vList[t[0]-1][0] = True
-                    vList[t[0]-1][1] = t[1] + vList[pop-1][1]
+            for t in nList[pop - 1]:
+                if vList[t[0] - 1][0] == False:
+                    queue.insert(0, t[0])
+                    vList[t[0] - 1][0] = True
+                    vList[t[0] - 1][1] = t[1] + vList[pop - 1][1]
         for i in range(len(vList)):
-            if vList[i][1]>vList[node-1][1]:
-                node=i+1
+            if vList[i][1] > vList[node - 1][1]:
+                node = i + 1
 
     BFS(1)
     print(node)
-    vList=[[False,0] for _ in range(v)]
+    vList = [[False, 0] for _ in range(v)]
 
     BFS(node)
-    print(vList[node-1][1])
+    print(vList[node - 1][1])
 
 
 """
@@ -1128,31 +1190,33 @@ N개의 정수 A[1], A[2], ...,A[N]이 주어져 있을 때 이 안에 X라는 �
                               1
 ===========================
 """
+
+
 def solution29():
-    answer=[]
-    numbers=list(map(int, input("numbers : ").split()))
-    fNumbers=list(map(int,input("fnumbers : ").split()))
+    answer = []
+    numbers = list(map(int, input("numbers : ").split()))
+    fNumbers = list(map(int, input("fnumbers : ").split()))
 
     numbers.sort()
 
     for i in range(len(fNumbers)):
-        isFound=False
+        isFound = False
         startIdx = 0
         endIdx = len(numbers) - 1
         midIdx = int((startIdx + endIdx) / 2)
 
         while startIdx <= endIdx:
-            if fNumbers[i]<numbers[midIdx]:
-                endIdx=midIdx-1
+            if fNumbers[i] < numbers[midIdx]:
+                endIdx = midIdx - 1
                 midIdx = int((startIdx + endIdx) / 2)
 
 
-            elif fNumbers[i]>numbers[midIdx]:
-                startIdx=midIdx+1
+            elif fNumbers[i] > numbers[midIdx]:
+                startIdx = midIdx + 1
                 midIdx = int((startIdx + endIdx) / 2)
 
             else:
-                isFound=True
+                isFound = True
                 break
 
         if isFound:
@@ -1178,12 +1242,38 @@ def solution29():
   1 2 3 4 5 6 7 8 9
 ===========================
 """
+
+
 def solution30():
     answer = 0
-    N,M=map(int,input("N, M : ").split())
-    numbers=list(map(int,input("numbers : ")))
+    N, M = map(int, input("N, M : ").split())
+    numbers = list(map(int, input("numbers : ").split()))
+    sizeList = []
+    fullSize = 0
+    for i in range(N):
+        fullSize += numbers[i]
+    for i in range(numbers[N - 1], fullSize + 1):
+        sizeList.append(i)
+    startIdx = 0
+    endIdx = len(sizeList) - 1
+    while startIdx <= endIdx:
+        midIdx = int((endIdx + startIdx) / 2)
+        size = sizeList[midIdx]
+        temp = 0
+        cnt = 1
+        for i in range(len(numbers)):
+            temp += numbers[i]
+            if temp > size:
+                cnt += 1
+                temp = numbers[i]
 
-    print(answer)
+        print("midVal : {0} / cnt : {1}".format(size, cnt))
+        if cnt > M:
+            startIdx = midIdx + 1
+        elif cnt <= M:
+            endIdx = midIdx - 1
+
+    print(sizeList[startIdx])
 
 
 """
@@ -1199,17 +1289,20 @@ B를 오름차순 정렬했을 때, B[k]를 구하라. (배열 A와 B의 인덱�
   7
 ===========================
 """
+
+
 def solution31():
     answer = 0
-    N, k=map(int,input("N, k : ").split())
+    N, k = map(int, input("N, k : ").split())
 
-    B=[]
+    B = []
     for i in range(N):
         for j in range(N):
-            B.append((i+1)*(j+1))
+            B.append((i + 1) * (j + 1))
 
     B.sort()
     print(B[k])
+
 
 """
 문제 32 : 동전 개수의 최솟값 구하기
@@ -1247,8 +1340,26 @@ def solution31():
   50000
 ===========================
 """
+
+
 def solution32():
     answer = 0
+    N, K = map(int, input("N & K : ").split())
+    coins = []
+    for i in range(N):
+        c = int(input("coin : "))
+        coins.append(c)
+    coins.sort(reverse=True)
+    val = 0
+    while True:
+        if val + coins[0] < K:
+            val += coins[0]
+            answer += 1
+        elif val + coins[0] > K:
+            coins = coins[1:]
+        else:
+            answer += 1
+            break
     print(answer)
 
 
@@ -1271,8 +1382,17 @@ N개의 숫자 카드 묶음의 각각의 크기가 주어질 때 최소 몇 번
   40
 ===========================
 """
+
+
 def solution33():
     answer = 0
+    N = int(input("N : "))
+    numbers = list(map(int, input("numbers : ").split()))
+    for i in range(N):
+        if i == 0:
+            answer += numbers[i] * (N - 1)
+        else:
+            answer += numbers[i] * (N - i)
     print(answer)
 
 
@@ -1292,8 +1412,48 @@ def solution33():
   -1 -8 2 1 3 6 -5 0 1
 ===========================
 """
+
+
 def solution34():
     answer = 0
+    numbers = list(map(int, input("numbers : ").split()))
+    negatives = []
+    biggerThanOne = []
+    isZero = False
+    for n in numbers:
+        if n < 0:
+            negatives.append(n)
+        elif n == 0:
+            isZero = True
+        elif n == 1:
+            answer+=1
+        else:
+            biggerThanOne.append(n)
+
+    negatives.sort()
+    biggerThanOne.sort()
+
+    if len(negatives) % 2 == 1:
+        if isZero:
+            negatives.pop()
+        else:
+            answer += negatives.pop()
+
+    if len(biggerThanOne) % 2 == 1:
+        answer += biggerThanOne[0]
+        biggerThanOne=biggerThanOne[1:]
+
+    def getSum(list):
+        nonlocal answer
+        temp=0
+        for i in range(len(list)):
+            if i%2==0:
+                temp=list[i]
+            else:
+                answer+=temp*list[i]
+
+    getSum(negatives)
+    getSum(biggerThanOne)
     print(answer)
 
 
@@ -1323,6 +1483,21 @@ def solution34():
 """
 def solution35():
     answer = 0
+    N=int(input("N : "))
+    A=[[0]*2 for _ in range(N)]
+
+    for i in range(N):
+        S, E=map(int, input("S & E : ").split())
+        A[i][1]=S
+        A[i][0]=E
+    A.sort()
+    end=0
+
+    for i in range(N):
+        if A[i][1]>end:
+            answer+=1
+            end=A[i][0]
+
     print(answer)
 
 
@@ -1339,4 +1514,26 @@ def solution35():
 """
 def solution36():
     answer = 0
+    S=input("식 : ")
+    temp=""
+    parsedList=[]
+    for c in S:
+        if c!='-' and c!='+':
+            temp+=c
+        else:
+            parsedList.append(temp)
+            parsedList.append(c)
+            temp=""
+    parsedList.append(temp)
+    FirstMinusIdx=parsedList.index('-')
+    minusStatus=False
+    for i in range(len(parsedList)):
+        if i==FirstMinusIdx:
+            minusStatus=True
+        if i%2==0:
+            if minusStatus:
+                answer -= int(parsedList[i])
+            else:
+                answer += int(parsedList[i])
+
     print(answer)
